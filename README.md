@@ -138,6 +138,11 @@ networks:
 
 
 ```
+run Docker Compose
+
+``` zsh
+docker-compose up -d
+```
 
 run
 
