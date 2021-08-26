@@ -92,3 +92,57 @@ RUN npm install gulp-cli -g
 ```
 
 
+Build the image using:
+``` zsh
+
+docker build -t PHP_IMAGES_NAME .
+
+```
+
+
+create docker-compose.yml as follow:
+
+``` yml
+
+version: '3.1'
+
+services:
+  mariadb10:
+    container_name: mariadb10
+    image: mariadb:10.6.4
+    ports:
+      - 3306:3306
+    networks:
+      - php_network
+    environment:
+      - MYSQL_ROOT_PASSWORD=MYPASSWORD
+
+  php8:
+    container_name: php8
+    image: docker-php-dev
+    restart: always
+    ports:
+      - 5000:80
+    depends_on:
+      - mariadb10
+    volumes:
+      - ./development:/var/www/html
+    networks: 
+      - php_network
+
+
+
+networks: 
+  php_network:
+    name: php_network
+
+
+```
+
+run
+
+```
+http://localhost:5000
+
+```
+
