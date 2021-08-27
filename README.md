@@ -151,8 +151,13 @@ http://localhost:5000
 
 ```
 
-Restore Database to ```.sql```
+Restore Database from ```.sql```
 
 ```
 cat backup.sql | docker exec -i CONTAINER /usr/bin/mysql -u root --password=root DATABASE
+```
+
+Backup Database to ```.sql```
+```
+docker exec CONTAINER /usr/bin/mysqldump -u root --password=root DATABASE > backup.sql
 ```
